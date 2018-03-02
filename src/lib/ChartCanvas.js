@@ -1048,7 +1048,7 @@ class ChartCanvas extends Component {
 	}
 	render() {
 
-		const { type, height, width, margin, className, zIndex, defaultFocus, ratio, mouseMoveEvent, panEvent, zoomEvent } = this.props;
+		const { type, height, width, margin, viewBox, className, zIndex, defaultFocus, ratio, mouseMoveEvent, panEvent, zoomEvent } = this.props;
 		const { useCrossHairStyleCursor, onSelect } = this.props;
 
 		const { plotData, xScale, xAccessor, chartConfig } = this.state;
@@ -1063,7 +1063,7 @@ class ChartCanvas extends Component {
 					type={type}
 					ratio={ratio}
 					width={width} height={height} zIndex={zIndex}/>
-				<svg className={className} width={width} height={height} style={{ position: "absolute", zIndex: (zIndex + 5) }}>
+				<svg className={className} width={width} height={height} style={{ position: "absolute", zIndex: (zIndex + 5) }} viewBox={viewBox}>
 					{cursor}
 					<defs>
 						<clipPath id="chart-area-clip">
@@ -1127,6 +1127,7 @@ function isInteractionEnabled(xScale, xAccessor, data) {
 ChartCanvas.propTypes = {
 	width: PropTypes.number.isRequired,
 	height: PropTypes.number.isRequired,
+	viewBox: PropTypes.string,
 	margin: PropTypes.object,
 	ratio: PropTypes.number.isRequired,
 	// interval: PropTypes.oneOf(["D", "W", "M"]), // ,"m1", "m5", "m15", "W", "M"
